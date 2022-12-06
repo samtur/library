@@ -85,4 +85,74 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-rows: 2fr 8fr;
+}
+
+/* Input Form */
+
+.formContainer {
+  grid-column: 2/3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.inputContainer {
+  list-style: none;
+  display: flex;
+}
+
+/* Book Display */
+.contentContainer {
+  grid-column: 2/3;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: fit-content;
+}
+
+.contentHead {
+  grid-column: 1/5;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: fit-content;
+  border-bottom: 1px solid black;
+}
+.contentRow {
+  grid-column: 1/5;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: fit-content;
+  border-bottom: 1px solid black;
+}
+
+.headName {
+  grid-column: 1/2;
+}
+.headAuthor {
+  grid-column: 2/3;
+}
+.headStatus {
+  grid-column: 3/4;
+}
+
+.contentOne {
+  grid-column: 1/2;
+}
+.contentTwo {
+  grid-column: 2/3;
+}
+.contentThree {
+  grid-column: 3/4;
+}
+.contentFour {
+  grid-column: 4/5;
 }
