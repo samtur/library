@@ -1,9 +1,19 @@
 // Selectors
-let bookName = document.querySelector("#book").value;
-let bookAuthor = document.querySelector("#author").value;
-let bookStatus = document.querySelector("#status").value;
+let bookName = document.querySelector("#book");
+let bookAuthor = document.querySelector("#author");
+let bookStatus = document.querySelector("#status");
 const submit = document.querySelector("#submitBtn");
 const contentContainer = document.querySelector(".contentContainer");
+let readBtn = document.querySelectorAll(".contentThree");
+
+// GET THIS TO WORK!
+// readBtn = document.querySelectorAll(".contentThree");
+
+// readBtn.forEach((item) => {
+//   readBtn.addEventListener("click", function (e) {
+//     console.log(item);
+//   });
+// });
 
 // Array to store books
 let library = [];
@@ -13,15 +23,20 @@ function Book(title, author, read) {
   this.title = title;
   this.author = author;
   this.read = read;
+  this.add = false;
 }
 
 // Listening for Event
-submit.addEventListener("click", function (event) {
-  event.preventDefault();
-  bookName = document.querySelector("#book").value;
-  bookAuthor = document.querySelector("#author").value;
-  bookStatus = document.querySelector("#status").value;
+submit.addEventListener("click", function (e) {
+  e.preventDefault();
+  bookNameValue = bookName.value;
+  bookAuthorValue = bookAuthor.value;
+  bookStatusValue = bookStatus.value;
+  bookName.value = "";
+  bookAuthor.value = "";
+  bookStatus.value = "";
   addBookToLibrary();
+  displayBooks();
 });
 
 // Sample data
@@ -40,12 +55,15 @@ library.push(harryPotter, lordOfTheRings, kafkaOnTheShore);
 
 // Function to add book to array.
 function addBookToLibrary() {
-  let item = new Book(bookName, bookAuthor, bookStatus);
+  let item = new Book(bookNameValue, bookAuthorValue, bookStatusValue);
   library.push(item);
 }
 
 function displayBooks() {
   for (i in library) {
+    if (library[i].add === true) {
+      continue;
+    }
     const contentRow = document.createElement("div");
     contentRow.className = "contentRow";
     const contentOne = document.createElement("div");
@@ -55,8 +73,9 @@ function displayBooks() {
     const contentTwo = document.createElement("div");
     contentTwo.className = "contentTwo";
     contentTwo.innerText = library[i].author;
-    const contentThree = document.createElement("div");
+    const contentThree = document.createElement("button");
     contentThree.className = "contentThree";
+    contentThree.id = `${i}`;
     contentThree.innerText = library[i].read === true ? "read" : "not read";
     const contentFour = document.createElement("div");
     contentFour.className = "contentFour";
@@ -65,7 +84,10 @@ function displayBooks() {
     contentRow.append(contentThree);
     contentRow.append(contentFour);
     contentContainer.append(contentRow);
+    library[i].add = true;
   }
 }
 
 displayBooks();
+
+// Listening for Read Button
