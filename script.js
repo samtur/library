@@ -49,17 +49,21 @@ submit.addEventListener("click", function (e) {
 // Function to toggle read buttons
 function readListener(readBtns) {
   readBtns.forEach((btn) => {
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-      btn.textContent === "read"
-        ? (btn.textContent = "not read")
-        : (btn.textContent = "read");
-    });
+    btn.addEventListener(
+      "click",
+      function () {
+        this.textContent === "read"
+          ? (this.textContent = "not read")
+          : (this.textContent = "read");
+      },
+      { once: true }
+    );
     // library[i].read === true
     //   ? (library[i].read = false)
     //   : (library[i].read = true);
   });
 }
+
 // Function to delete books
 // function deleteListener(deleteBtns) {
 //   for (let i = 0; i < deleteBtns.length; i++) {
