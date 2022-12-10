@@ -6,6 +6,11 @@ const submit = document.querySelector("#submitBtn");
 const contentContainer = document.querySelector(".contentContainer");
 let readBtns = document.querySelectorAll(".contentThree");
 let deleteBtns = document.querySelectorAll(".contentFour");
+let contentRow = "";
+let contentOne = "";
+let contentTwo = "";
+let contentThree = "";
+let contentFour = "";
 
 // Array to store books
 let library = [];
@@ -47,43 +52,28 @@ submit.addEventListener("click", function (e) {
 // library.push(harryPotter, lordOfTheRings, kafkaOnTheShore);
 
 // Function to toggle read buttons
-function readListener(readBtns) {
-  readBtns.forEach((btn) => {
-    btn.addEventListener(
-      "click",
-      function () {
-        this.textContent === "read"
-          ? (this.textContent = "not read")
-          : (this.textContent = "read");
-      },
-      { once: true }
-    );
-    // library[i].read === true
-    //   ? (library[i].read = false)
-    //   : (library[i].read = true);
+function readListener(contentThree, libraryInd) {
+  contentThree.addEventListener("click", function () {
+    this.textContent === "read"
+      ? (this.textContent = "not read")
+      : (this.textContent = "read");
+    libraryInd.read === true
+      ? (libraryInd.read = false)
+      : (libraryInd.read = true);
   });
 }
 
 // Function to delete books
-// function deleteListener(deleteBtns) {
-//   for (let i = 0; i < deleteBtns.length; i++) {
-//     deleteBtns[i].addEventListener("click", function () {
-//       console.log(library);
-//       library.splice(i, 1);
-//       console.log(library);
-//       const item = document.querySelector(`#contentRow${i}`);
-//       item.remove();
-//     });
-//   }
-// }
-
-// Function to update ids
-// function updateId(contentRows) {
-//   for (let i = 0; i < contentRows.length; i++) {
-//     console.log(contentRows[i]);
-//     contentRows[i].id = `contentRow${i}`;
-//   }
-// }
+function deleteListener(contentFour, libraryInd, indNum, library) {
+  contentFour.addEventListener("click", function () {
+    let index = library.indexOf(libraryInd);
+    if (index !== -1) {
+      library.splice(index, 1);
+    }
+    const item = document.querySelector(`#contentRow${indNum}`);
+    item.remove();
+  });
+}
 
 // Function to add book to array.
 function addBookToLibrary() {
@@ -96,22 +86,23 @@ function displayBooks() {
     if (library[i].add === true) {
       continue;
     }
-    const contentRow = document.createElement("div");
+    contentRow = document.createElement("div");
     contentRow.className = "contentRow";
     contentRow.id = `contentRow${i}`;
-    const contentOne = document.createElement("div");
+    contentOne = document.createElement("div");
     contentOne.className = "contentOne";
     contentOne.innerText = library[i].title;
-    console.log(library[i].title);
-    const contentTwo = document.createElement("div");
+    contentTwo = document.createElement("div");
     contentTwo.className = "contentTwo";
     contentTwo.innerText = library[i].author;
-    const contentThree = document.createElement("button");
+    contentThree = document.createElement("button");
     contentThree.className = "contentThree";
     contentThree.innerText = library[i].read === true ? "read" : "not read";
-    const contentFour = document.createElement("button");
+    readListener(contentThree, library[i]);
+    contentFour = document.createElement("button");
     contentFour.className = "contentFour";
     contentFour.innerText = "delete";
+    deleteListener(contentFour, library[i], i, library);
     contentRow.append(contentOne);
     contentRow.append(contentTwo);
     contentRow.append(contentThree);
@@ -119,10 +110,7 @@ function displayBooks() {
     contentContainer.append(contentRow);
     library[i].add = true;
   }
-  readBtns = document.querySelectorAll(".contentThree");
-  console.log(readBtns);
-  readListener(readBtns);
-  // deleteBtns = document.querySelectorAll(".contentFour");
-  // deleteListener(deleteBtns);
 }
+
+// For Test data
 // displayBooks();
