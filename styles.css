@@ -88,13 +88,48 @@ video {
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color: #1b1b1b;
+  --txt-color: #fffffe;
+  --btn-color: #ff8906;
+}
+
+::selection {
+  color: var(--bg-color);
+  background-color: var(--txt-color);
+}
+
+::-moz-selection {
+  color: var(--bg-color);
+  background-color: var(--txt-color);
+}
+
+html {
+  font-family: "Nunito Sans", sans-serif;
+}
+
 body {
   width: 100vw;
   height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--txt-color);
+}
+
+/* Main Grid */
+.mainContainer {
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr 8fr 1fr;
-  grid-template-rows: 2fr 8fr;
+  grid-template-rows: 1fr;
+}
+
+/* Heading */
+.heading {
+  font-size: 3rem;
+  grid-column: 2/3;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
 }
 
 /* Input Form */
@@ -104,11 +139,108 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  height: fit-content;
+  margin-bottom: 1.5rem;
 }
 
 .inputContainer {
   list-style: none;
   display: flex;
+  gap: 1rem;
+  font-weight: 600;
+}
+
+.inputContainer > li > input {
+  color: var(--txt-color);
+  background: transparent;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--txt-color);
+  font-family: "Nunito Sans", sans-serif;
+  border-radius: 0;
+  font-size: 1rem;
+}
+
+.inputContainer > li > input:focus {
+  outline: none;
+  border-radius: 0rem;
+}
+
+.selectDrop {
+  color: var(--txt-color);
+  background: transparent;
+  padding: 0.5rem 0.5rem;
+  border: 1px solid var(--txt-color);
+  font-family: "Nunito Sans", sans-serif;
+  border-radius: 0rem;
+  font-size: 1rem;
+  width: 7rem;
+  background-color: var(--bg-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url(imgs/arrow.png);
+  background-repeat: no-repeat;
+  background-position: right 0.7rem top 50%;
+  background-size: 0.65rem auto;
+}
+
+.selectDrop:focus {
+  outline: none;
+  border-radius: 0rem;
+}
+
+#book,
+#author {
+  width: 15rem;
+}
+
+.inputContainer > li > label {
+  font-size: 1.25rem;
+  margin-right: 0.25rem;
+  margin-left: 0.75rem;
+}
+
+#submitBtn {
+  font-size: 1rem;
+  color: var(--txt-color);
+  padding: 0.25rem 1rem;
+  font-family: "Nunito Sans", sans-serif;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+  display: inline-block;
+  border: 1px solid var(--txt-color);
+  z-index: 1;
+  margin-left: 0.75rem;
+}
+
+#submitBtn::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  direction: rtl;
+  z-index: -1;
+  background: var(--txt-color);
+  transition: all 0.5s ease;
+}
+
+#submitBtn:hover {
+  color: var(--bg-color);
+}
+
+#submitBtn:hover:after {
+  left: 0;
+  right: auto;
+  width: 100%;
+}
+
+#submitBtn:active {
+  top: 2px;
 }
 
 /* Book Display */
@@ -124,14 +256,23 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   height: fit-content;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--txt-color);
+  font-weight: 600;
 }
+
+.contentHead > h4 {
+  padding-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
 .contentRow {
   grid-column: 1/5;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   height: fit-content;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--txt-color);
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 .headName {
@@ -152,7 +293,56 @@ body {
 }
 .contentThree {
   grid-column: 3/4;
+  width: 10rem;
 }
 .contentFour {
   grid-column: 4/5;
+  width: 10rem;
+}
+
+.contentThree,
+.contentFour {
+  font-size: 1rem;
+  color: var(--txt-color);
+  padding: 0.25rem 1rem;
+  font-family: "Nunito Sans", sans-serif;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+  display: inline-block;
+  border: 1px solid var(--txt-color);
+  z-index: 1;
+}
+
+.contentThree::after,
+.contentFour::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  direction: rtl;
+  z-index: -1;
+  background: var(--txt-color);
+  transition: all 0.5s ease;
+}
+
+.contentThree:hover,
+.contentFour:hover {
+  color: var(--bg-color);
+}
+
+.contentThree:hover:after,
+.contentFour:hover:after {
+  left: 0;
+  right: auto;
+  width: 100%;
+}
+
+.contentThree:active,
+.contentFour:active {
+  top: 2px;
 }

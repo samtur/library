@@ -38,25 +38,25 @@ submit.addEventListener("click", function (e) {
 });
 
 // Sample data
-// let harryPotter = new Book(
-//   "Harry Potter and the Goblet of Fire",
-//   "JK Rowling",
-//   true
-// );
-// let lordOfTheRings = new Book(
-//   "Lord of the Rings Trilogy",
-//   "JRR Tolkein",
-//   false
-// );
-// let kafkaOnTheShore = new Book("Kafka on the Shore", "Haruki Murakami", true);
-// library.push(harryPotter, lordOfTheRings, kafkaOnTheShore);
+let harryPotter = new Book(
+  "Harry Potter and the Goblet of Fire",
+  "JK Rowling",
+  true
+);
+let lordOfTheRings = new Book(
+  "Lord of the Rings Trilogy",
+  "JRR Tolkein",
+  false
+);
+let kafkaOnTheShore = new Book("Kafka on the Shore", "Haruki Murakami", true);
+library.push(harryPotter, lordOfTheRings, kafkaOnTheShore);
 
 // Function to toggle read buttons
 function readListener(contentThree, libraryInd) {
   contentThree.addEventListener("click", function () {
-    this.textContent === "read"
-      ? (this.textContent = "not read")
-      : (this.textContent = "read");
+    this.textContent === "Read"
+      ? (this.textContent = "Not Read")
+      : (this.textContent = "Read");
     libraryInd.read === true
       ? (libraryInd.read = false)
       : (libraryInd.read = true);
@@ -97,11 +97,11 @@ function displayBooks() {
     contentTwo.innerText = library[i].author;
     contentThree = document.createElement("button");
     contentThree.className = "contentThree";
-    contentThree.innerText = library[i].read === true ? "read" : "not read";
+    contentThree.innerText = library[i].read === true ? "Read" : "Not Read";
     readListener(contentThree, library[i]);
     contentFour = document.createElement("button");
     contentFour.className = "contentFour";
-    contentFour.innerText = "delete";
+    contentFour.innerText = "Delete";
     deleteListener(contentFour, library[i], i, library);
     contentRow.append(contentOne);
     contentRow.append(contentTwo);
@@ -113,4 +113,4 @@ function displayBooks() {
 }
 
 // For Test data
-// displayBooks();
+displayBooks();
