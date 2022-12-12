@@ -23,9 +23,21 @@ function Book(title, author, read) {
   this.add = false;
 }
 
-// Listening for Event
+// Listening for Submit
+document.querySelectorAll(".inputItem[data-error] .input").forEach((inpEl) => {
+  inpEl.addEventListener("input", () =>
+    inpEl.parentElement.removeAttribute("data-error")
+  );
+});
+
 submit.addEventListener("click", function (e) {
-  e.preventDefault();
+  if (
+    bookName.value === "" ||
+    bookAuthor.value === "" ||
+    bookStatus.value === ""
+  ) {
+    return;
+  }
   bookNameValue = bookName.value;
   bookAuthorValue = bookAuthor.value;
   bookStatusValue = bookStatus.value;
@@ -36,6 +48,15 @@ submit.addEventListener("click", function (e) {
   addBookToLibrary();
   displayBooks();
 });
+
+// Blocking default validation behaviour
+// bookName.addEventListener("invalid", (e) => {
+//   e.preventDefault();
+// });
+
+// bookAuthor.addEventListener("invalid", (e) => {
+//   e.preventDefault();
+// });
 
 // Sample data
 let harryPotter = new Book(

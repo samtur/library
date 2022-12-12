@@ -28,22 +28,22 @@
           autocomplete="off"
         >
           <ul class="inputContainer">
-            <li>
-              <label for="book">Book</label>
-              <input type="text" id="book" name="book" />
+            <label class="label" for="book">Book</label>
+            <li class="inputItem" data-error="Please enter a book.">
+              <input type="text" class="input" id="book" name="book" />
             </li>
-            <li>
-              <label for="author">Author</label>
-              <input type="text" id="author" name="author" />
+            <label class="label" for="author">Author</label>
+            <li class="inputItem" data-error="Please enter an author.">
+              <input type="text" class="input" id="author" name="author" />
             </li>
-            <li>
-              <label for="status">Status</label>
+            <label class="label" for="status">Status</label>
+            <li class="inputItem">
               <select name="status" id="status" class="selectDrop">
                 <option value="true" selected>Read</option>
                 <option value="false">Not Read</option>
               </select>
             </li>
-            <button type="submit" id="submitBtn">Submit</button>
+            <button type="button" id="submitBtn">Submit</button>
           </ul>
         </form>
       </div>
