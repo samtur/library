@@ -15,13 +15,23 @@ let contentFour = "";
 // Array to store books
 let library = [];
 
-// Constructor for Book
-function Book(title, author, read) {
-  this.title = title;
-  this.author = author;
-  this.read = read;
-  this.add = false;
+// Class for Book
+class Book {
+  constructor(title, author, read) {
+    this.title = title;
+    this.author = author;
+    this.read = read;
+    this.add = false;
+  }
 }
+
+// Constructor for Book
+// function Book(title, author, read) {
+//   this.title = title;
+//   this.author = author;
+//   this.read = read;
+//   this.add = false;
+// }
 
 // Listening for Submit
 document.querySelectorAll(".inputItem[data-error] .input").forEach((inpEl) => {
