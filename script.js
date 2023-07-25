@@ -23,11 +23,45 @@ function Book(title, author, read) {
   this.add = false;
 }
 
-// Listening for Submit
-document.querySelectorAll(".inputItem[data-error] .input").forEach((inpEl) => {
-  inpEl.addEventListener("input", () =>
-    inpEl.parentElement.removeAttribute("data-error")
-  );
+// Validation
+const form = document.querySelector("form");
+const bookInput = document.querySelector("#book");
+const authorInput = document.querySelector("#author");
+const bookError = document.querySelector("#bookError");
+const authorError = document.querySelector("#authorError");
+
+function showError() {
+  if (bookInput.validity.valueMissing) {
+    bookError.textContent = "You need a book title!";
+  }
+  if (authorInput.validity.valueMissing) {
+    authorError.textContent = "You need an author's name!";
+  }
+}
+
+bookInput.addEventListener("input", (e) => {
+  if (bookInput.validity.valid) {
+    bookError.textContent = "";
+    bookError.className = "error";
+  } else {
+    showError();
+  }
+});
+
+authorInput.addEventListener("input", (e) => {
+  if (authorInput.validity.valid) {
+    authorError.textContent = "";
+    authorError.className = "error";
+  } else {
+    showError();
+  }
+});
+
+submit.addEventListener("click", (e) => {
+  if (!bookInput.validity.valid || !authorInput.validity.valid) {
+    showError();
+    e.preventDefault();
+  }
 });
 
 submit.addEventListener("click", function (e) {

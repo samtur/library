@@ -150,7 +150,7 @@ body {
   font-weight: 600;
 }
 
-.inputContainer > li > input {
+.inputContainer>li>input {
   color: var(--txt-color);
   background: transparent;
   height: fit-content;
@@ -162,20 +162,18 @@ body {
   font-size: 1rem;
 }
 
-.inputContainer > li > input:focus {
+.inputContainer>li>input:focus {
   outline: none;
   border-radius: 0rem;
 }
 
-.inputItem[data-error] .input {
-  background: transparent;
-  color: var(--txt-color);
+.inputItem {
+  display: flex;
+  flex-direction: column;
 }
 
-.inputItem[data-error]::after {
-  display: flex;
+.error {
   margin-top: 0.2rem;
-  content: attr(data-error);
 }
 
 .selectDrop {
@@ -275,7 +273,7 @@ body {
   font-weight: 600;
 }
 
-.contentHead > h4 {
+.contentHead>h4 {
   padding-bottom: 0.5rem;
   font-size: 1.25rem;
 }
@@ -293,9 +291,11 @@ body {
 .headName {
   grid-column: 1/2;
 }
+
 .headAuthor {
   grid-column: 2/3;
 }
+
 .headStatus {
   grid-column: 3/4;
 }
@@ -303,13 +303,16 @@ body {
 .contentOne {
   grid-column: 1/2;
 }
+
 .contentTwo {
   grid-column: 2/3;
 }
+
 .contentThree {
   grid-column: 3/4;
   width: 10rem;
 }
+
 .contentFour {
   grid-column: 4/5;
   width: 10rem;
